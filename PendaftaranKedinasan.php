@@ -12,11 +12,15 @@ class PendaftaranKedinasan extends Pendaftaran {
         $this->instansiSponsor = $instansiSponsor;
     }
 
-    // Implementasi metode abstrak (sementara)
-    public function hitungTotalBiaya() { return $this->biayaPendaftaranDasar; }
-    public function tampilkanInfoJalur() { return "Jalur Kedinasan - Sponsor: " . $this->instansiSponsor; }
+    // OVERRIDING: Dikenakan surcharge tambahan sebesar 25% (dikali 1.25)
+    public function hitungTotalBiaya() { 
+        return $this->biayaPendaftaranDasar * 1.25; 
+    }
 
-    // Metode Query Spesifik
+    public function tampilkanInfoJalur() { 
+        return "Jalur Kedinasan - Instansi: " . $this->instansiSponsor . " (No. SK: " . $this->skIkatanDinas . ")"; 
+    }
+
     public static function getDaftarKedinasan($db) {
         $query = "SELECT id_pendaftaran, nama_calon, asal_sekolah, nilai_ujian, biaya_pendaftaran_dasar, sk_ikatan_dinas, instansi_sponsor 
                   FROM tabel_pendaftaran 
