@@ -2,7 +2,7 @@
 // index.php
 
 // Load semua file class yang dibutuhkan
-require_once 'Pendaftaran.php';
+require_once 'pendaftaran.php';
 require_once 'PendaftaranReguler.php';
 require_once 'PendaftaranPrestasi.php';
 require_once 'PendaftaranKedinasan.php';

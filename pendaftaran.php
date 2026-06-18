@@ -1,6 +1,35 @@
 <?php
 // Pendaftaran.php
 
+// =========================================================================
+// 1. KONEKSI DATABASE (PDO) - Diperlukan agar tidak terjadi Fatal Error di index.php
+// =========================================================================
+class Database {
+    private $host = "localhost";
+    private $username = "root"; 
+    private $password = "";     
+    private $db_name = "DB_SIMULASI_PBO_TI-1D_DokterQolbiyAlHasaniy";
+    public $conn;
+
+    public function getConnection() {
+        $this->conn = null;
+        try {
+            $this->conn = new PDO(
+                "mysql:host=" . $this->host . ";dbname=" . $this->db_name, 
+                $this->username, 
+                $this->password
+            );
+            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        } catch(PDOException $exception) {
+            echo "Koneksi database gagal: " . $exception->getMessage();
+        }
+        return $this->conn;
+    }
+}
+
+// =========================================================================
+// 2. ABSTRACT CLASS INDUK
+// =========================================================================
 abstract class Pendaftaran {
     // Properti Terenkapsulasi (protected) - sesuai kolom tabel database Tahap 1
     protected $id_pendaftaran;
