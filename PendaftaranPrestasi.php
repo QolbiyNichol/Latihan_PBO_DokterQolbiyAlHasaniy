@@ -12,11 +12,15 @@ class PendaftaranPrestasi extends Pendaftaran {
         $this->tingkatPrestasi = $tingkatPrestasi;
     }
 
-    // Implementasi metode abstrak (sementara)
-    public function hitungTotalBiaya() { return $this->biayaPendaftaranDasar; }
-    public function tampilkanInfoJalur() { return "Jalur Prestasi - Tingkat: " . $this->tingkatPrestasi; }
+    // OVERRIDING: Mendapatkan potongan sebesar Rp50.000
+    public function hitungTotalBiaya() { 
+        return $this->biayaPendaftaranDasar - 50000; 
+    }
 
-    // Metode Query Spesifik
+    public function tampilkanInfoJalur() { 
+        return "Jalur Prestasi - " . $this->jenisPrestasi . " Tingkat " . $this->tingkatPrestasi; 
+    }
+
     public static function getDaftarPrestasi($db) {
         $query = "SELECT id_pendaftaran, nama_calon, asal_sekolah, nilai_ujian, biaya_pendaftaran_dasar, jenis_prestasi, tingkat_prestasi 
                   FROM tabel_pendaftaran 
